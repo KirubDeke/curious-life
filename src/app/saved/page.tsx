@@ -141,7 +141,7 @@ export default function SavedBlogsPage() {
               Your Reading List is Empty
             </h2>
             <p className="text-gray-600 mb-6">
-              You haven't saved any blogs yet. When you find interesting articles, click the bookmark icon to save them here.
+              You haven&apos;t saved any blogs yet. When you find interesting articles, click the bookmark icon to save them here.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
