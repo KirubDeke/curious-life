@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import BlogDetailLayout from "../../../../components/BlogDetailLayout";
 import { useSavedBlogs } from "../../../../context/SavedBlogsContext";
+import Link from "next/link";
 
 interface Comment {
   id: number;
@@ -31,6 +32,12 @@ interface Blog {
   createdAt: string;
 }
 
+interface PopularArticle {
+  id: number;
+  title: string;
+  createdAt: string;
+}
+
 export default function BlogDetailPage() {
   const { id } = useParams();
   const router = useRouter();
@@ -44,7 +51,7 @@ export default function BlogDetailPage() {
   const [content, setContent] = useState("");
   const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
   const [editContent, setEditContent] = useState("");
-  const [popularArticles, setPopularArticles] = useState<any[]>([]);
+  const [popularArticles, setPopularArticles] = useState<PopularArticle[]>([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -91,7 +98,7 @@ export default function BlogDetailPage() {
           { withCredentials: true }
         );
 
-        const formattedComments = commentsRes.data.comments.map((comment: any) => ({
+        const formattedComments = commentsRes.data.comments.map((comment: Comment) => ({
           ...comment,
           id: comment.id,
           userId: comment.userId,
@@ -334,7 +341,11 @@ export default function BlogDetailPage() {
             </div>
             <div className="divide-y divide-gray-100">
               {popularArticles.map((article) => (
-                <a key={article.id} href={`/blogs/${article.id}`} className="block p-5 hover:bg-gray-50 transition-colors group">
+                <Link 
+                  key={article.id} 
+                  href={`/blogs/${article.id}`} 
+                  className="block p-5 hover:bg-gray-50 transition-colors group"
+                >
                   <div className="flex items-start">
                     <div className="bg-blue-100 text-blue-800 rounded-lg p-2 mr-4">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -352,7 +363,7 @@ export default function BlogDetailPage() {
                       </p>
                     </div>
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -367,24 +378,42 @@ export default function BlogDetailPage() {
             </div>
             <div className="p-5">
               <div className="flex flex-wrap gap-2">
-                <a href={`/categories/${blog.category}`} className="px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium hover:bg-blue-100 transition-colors">
+                <Link 
+                  href={`/categories/${blog.category}`} 
+                  className="px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium hover:bg-blue-100 transition-colors"
+                >
                   {blog.category}
-                </a>
-                <a href="/categories/technology" className="px-4 py-2 bg-purple-50 text-purple-700 rounded-full text-sm font-medium hover:bg-purple-100 transition-colors">
+                </Link>
+                <Link 
+                  href="/categories/technology" 
+                  className="px-4 py-2 bg-purple-50 text-purple-700 rounded-full text-sm font-medium hover:bg-purple-100 transition-colors"
+                >
                   Technology
-                </a>
-                <a href="/categories/lifestyle" className="px-4 py-2 bg-green-50 text-green-700 rounded-full text-sm font-medium hover:bg-green-100 transition-colors">
+                </Link>
+                <Link 
+                  href="/categories/lifestyle" 
+                  className="px-4 py-2 bg-green-50 text-green-700 rounded-full text-sm font-medium hover:bg-green-100 transition-colors"
+                >
                   Lifestyle
-                </a>
-                <a href="/categories/productivity" className="px-4 py-2 bg-amber-50 text-amber-700 rounded-full text-sm font-medium hover:bg-amber-100 transition-colors">
+                </Link>
+                <Link 
+                  href="/categories/productivity" 
+                  className="px-4 py-2 bg-amber-50 text-amber-700 rounded-full text-sm font-medium hover:bg-amber-100 transition-colors"
+                >
                   Productivity
-                </a>
-                <a href="/categories/health" className="px-4 py-2 bg-pink-50 text-pink-700 rounded-full text-sm font-medium hover:bg-pink-100 transition-colors">
+                </Link>
+                <Link 
+                  href="/categories/health" 
+                  className="px-4 py-2 bg-pink-50 text-pink-700 rounded-full text-sm font-medium hover:bg-pink-100 transition-colors"
+                >
                   Health
-                </a>
-                <a href="/categories/business" className="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-full text-sm font-medium hover:bg-indigo-100 transition-colors">
+                </Link>
+                <Link 
+                  href="/categories/business" 
+                  className="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-full text-sm font-medium hover:bg-indigo-100 transition-colors"
+                >
                   Business
-                </a>
+                </Link>
               </div>
             </div>
           </div>

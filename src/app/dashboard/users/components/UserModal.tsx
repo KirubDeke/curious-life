@@ -56,7 +56,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user, activity, 
                 <div className="p-6">
                     <div className="flex justify-between items-start mb-6">
                         <h2 className="text-2xl font-bold text-gray-800">
-                            {user?.fullName}'s Activity
+                            {user?.fullName}&apos;s Activity
                         </h2>
                         <button
                             onClick={onClose}
@@ -86,9 +86,8 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user, activity, 
                                     </div>
                                     <div>
                                         <p className="text-sm text-gray-500">Blog Posting Status</p>
-                                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                            activity.data.basicInfo.canPostBlog ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                                        }`}>
+                                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${activity.data.basicInfo.canPostBlog ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                                            }`}>
                                             {activity.data.basicInfo.canPostBlog ? 'Allowed' : 'Denied'}
                                         </span>
                                     </div>

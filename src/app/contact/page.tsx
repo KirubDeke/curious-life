@@ -74,7 +74,7 @@ export default function ContactForm() {
                 Contact Us
               </h2>
               <p className="mt-4 text-lg">
-                Have questions or feedback? We'd love to hear from you!
+                Have questions or feedback? We would love to hear from you!
               </p>
             </div>
 

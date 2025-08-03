@@ -12,7 +12,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
   const getPageNumbers = () => {
     const pages: number[] = [];
     let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    const endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
 
     if (endPage - startPage + 1 < maxVisiblePages) {
       startPage = Math.max(1, endPage - maxVisiblePages + 1);
@@ -31,18 +31,16 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
         <button
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           disabled={currentPage === 1}
-          className={`relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md ${
-            currentPage === 1 ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-gray-50'
-          }`}
+          className={`relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md ${currentPage === 1 ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-gray-50'
+            }`}
         >
           Previous
         </button>
         <button
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
           disabled={currentPage === totalPages}
-          className={`ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md ${
-            currentPage === totalPages ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-gray-50'
-          }`}
+          className={`ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md ${currentPage === totalPages ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-gray-50'
+            }`}
         >
           Next
         </button>
@@ -59,9 +57,8 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
             <button
               onClick={() => onPageChange(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium ${
-                currentPage === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-500 hover:bg-gray-50'
-              }`}
+              className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium ${currentPage === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-500 hover:bg-gray-50'
+                }`}
             >
               <span className="sr-only">Previous</span>
               <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -73,11 +70,10 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
               <button
                 key={page}
                 onClick={() => onPageChange(page)}
-                className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
-                  page === currentPage
+                className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${page === currentPage
                     ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
                     : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
-                }`}
+                  }`}
               >
                 {page}
               </button>
@@ -86,9 +82,8 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
             <button
               onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
               disabled={currentPage === totalPages}
-              className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium ${
-                currentPage === totalPages ? 'text-gray-300 cursor-not-allowed' : 'text-gray-500 hover:bg-gray-50'
-              }`}
+              className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium ${currentPage === totalPages ? 'text-gray-300 cursor-not-allowed' : 'text-gray-500 hover:bg-gray-50'
+                }`}
             >
               <span className="sr-only">Next</span>
               <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

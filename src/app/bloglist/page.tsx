@@ -138,185 +138,185 @@ export default function BlogList() {
 
   return (
     <ClientLayout>
-    <div className="w-full bg-background text-foreground max-w-screen-xl mx-auto px-4 md:px-6 py-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">My Blogs</h1>
-        <Link
-          href="/createblogform"
-          className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
-        >
-          Create New Blog
-        </Link>
-      </div>
+      <div className="w-full bg-background text-foreground max-w-screen-xl mx-auto px-4 md:px-6 py-8">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold">My Blogs</h1>
+          <Link
+            href="/createblogform"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
+          >
+            Create New Blog
+          </Link>
+        </div>
 
-      {blogs.length === 0 || error === 'no-blogs' ? (
-        <div className="flex flex-col items-center justify-center min-h-[50vh] py-12 px-4 text-center">
-          {/* Illustration */}
-          <div className="relative w-64 h-64 mb-8">
-            <svg
-              className="w-full h-full text-gray-200"
-              viewBox="0 0 200 200"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M100 180C145.228 180 182 143.228 182 98C182 52.7715 145.228 16 100 16C54.7715 16 18 52.7715 18 98C18 143.228 54.7715 180 100 180Z"
-                stroke="currentColor"
-                strokeWidth="8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M100 132V132.1"
-                stroke="currentColor"
-                strokeWidth="8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M100 60V84"
-                stroke="currentColor"
-                strokeWidth="8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M60 80L84 80"
-                stroke="currentColor"
-                strokeWidth="8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M116 80L140 80"
-                stroke="currentColor"
-                strokeWidth="8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <div className="absolute inset-0 flex items-center justify-center">
+        {blogs.length === 0 || error === 'no-blogs' ? (
+          <div className="flex flex-col items-center justify-center min-h-[50vh] py-12 px-4 text-center">
+            {/* Illustration */}
+            <div className="relative w-64 h-64 mb-8">
               <svg
-                className="w-32 h-32 text-gray-300"
+                className="w-full h-full text-gray-200"
+                viewBox="0 0 200 200"
                 fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
+                  d="M100 180C145.228 180 182 143.228 182 98C182 52.7715 145.228 16 100 16C54.7715 16 18 52.7715 18 98C18 143.228 54.7715 180 100 180Z"
+                  stroke="currentColor"
+                  strokeWidth="8"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth="1"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+                <path
+                  d="M100 132V132.1"
+                  stroke="currentColor"
+                  strokeWidth="8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M100 60V84"
+                  stroke="currentColor"
+                  strokeWidth="8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M60 80L84 80"
+                  stroke="currentColor"
+                  strokeWidth="8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M116 80L140 80"
+                  stroke="currentColor"
+                  strokeWidth="8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
-            </div>
-          </div>
-
-          {/* Message */}
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">No Blogs Found</h2>
-          <p className="text-gray-500 max-w-md mb-6">
-            It looks like you haven't created any blogs yet. Ready to share your thoughts with the world?
-          </p>
-
-          {/* Action Button */}
-          <Link
-            href="/createblogform"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out"
-          >
-            <svg
-              className="-ml-1 mr-2 h-5 w-5"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                clipRule="evenodd"
-              />
-            </svg>
-            Create Your First Blog
-          </Link>
-        </div>
-      ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {blogs.map((blog) => (
-            <div key={blog.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-200">
-              {blog.image && (
-                <div className="relative w-full h-48">
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}`}
-                    alt={blog.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              <div className="absolute inset-0 flex items-center justify-center">
+                <svg
+                  className="w-32 h-32 text-gray-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   />
-                </div>
-              )}
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full uppercase font-semibold tracking-wide">
-                    {blog.category}
-                  </span>
-                  <div className="text-gray-500 text-sm">
-                    {blog.postTime} • {blog.readingTime}
+                </svg>
+              </div>
+            </div>
+
+            {/* Message */}
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">No Blogs Found</h2>
+            <p className="text-gray-500 max-w-md mb-6">
+              It looks like you haven&apos;t created any blogs yet. Ready to share your thoughts with the world?
+            </p>
+
+            {/* Action Button */}
+            <Link
+              href="/createblogform"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out"
+            >
+              <svg
+                className="-ml-1 mr-2 h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Create Your First Blog
+            </Link>
+          </div>
+        ) : (
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {blogs.map((blog) => (
+              <div key={blog.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-200">
+                {blog.image && (
+                  <div className="relative w-full h-48">
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}`}
+                      alt={blog.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
                   </div>
-                </div>
-
-                <h2 className="text-xl font-semibold text-gray-800 mb-2">{blog.title}</h2>
-                <p className="text-gray-600 mb-4 line-clamp-3">
-                  {blog.body.replace(/\r\n/g, ' ').substring(0, 150)}...
-                </p>
-
-                <div className="flex items-center justify-between mt-4">
-                  <div className="flex items-center">
-                    {blog.author.photo ? (
-                      <div className="relative w-8 h-8 rounded-full mr-2 overflow-hidden">
-                        <Image
-                          src={`${process.env.NEXT_PUBLIC_API_URL}${blog.author.photo}`}
-                          alt={blog.author.fullName}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    ) : (
-                      <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-medium mr-2">
-                        {blog.author.fullName.charAt(0)}
-                      </div>
-                    )}
-                    <span className="text-sm text-gray-700">{blog.author.fullName}</span>
+                )}
+                <div className="p-6">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full uppercase font-semibold tracking-wide">
+                      {blog.category}
+                    </span>
+                    <div className="text-gray-500 text-sm">
+                      {blog.postTime} • {blog.readingTime}
+                    </div>
                   </div>
 
-                  <div className="flex space-x-2">
-                    <button
-                      onClick={() => router.push(`/editblogs/${blog.id}`)}
-                      className="text-blue-500 hover:text-blue-700 p-2 rounded-full hover:bg-blue-50 transition duration-200"
-                      title="Edit"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                      </svg>
-                    </button>
-                    <button
-                      disabled={deletingId === blog.id}
-                      onClick={() => handleDelete(blog.id)}
-                      className={`text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition duration-200 ${deletingId === blog.id ? 'opacity-50 cursor-not-allowed' : ''
-                        }`}
-                      title="Delete"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-                      </svg>
-                    </button>
+                  <h2 className="text-xl font-semibold text-gray-800 mb-2">{blog.title}</h2>
+                  <p className="text-gray-600 mb-4 line-clamp-3">
+                    {blog.body.replace(/\r\n/g, ' ').substring(0, 150)}...
+                  </p>
+
+                  <div className="flex items-center justify-between mt-4">
+                    <div className="flex items-center">
+                      {blog.author.photo ? (
+                        <div className="relative w-8 h-8 rounded-full mr-2 overflow-hidden">
+                          <Image
+                            src={`${process.env.NEXT_PUBLIC_API_URL}${blog.author.photo}`}
+                            alt={blog.author.fullName}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-medium mr-2">
+                          {blog.author.fullName.charAt(0)}
+                        </div>
+                      )}
+                      <span className="text-sm text-gray-700">{blog.author.fullName}</span>
+                    </div>
+
+                    <div className="flex space-x-2">
+                      <button
+                        onClick={() => router.push(`/editblogs/${blog.id}`)}
+                        className="text-blue-500 hover:text-blue-700 p-2 rounded-full hover:bg-blue-50 transition duration-200"
+                        title="Edit"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                        </svg>
+                      </button>
+                      <button
+                        disabled={deletingId === blog.id}
+                        onClick={() => handleDelete(blog.id)}
+                        className={`text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition duration-200 ${deletingId === blog.id ? 'opacity-50 cursor-not-allowed' : ''
+                          }`}
+                        title="Delete"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+            ))}
+          </div>
+        )}
+      </div>
     </ClientLayout>
   );
 }

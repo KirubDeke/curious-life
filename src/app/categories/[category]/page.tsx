@@ -95,7 +95,7 @@ export default function CategoryBlogsPage() {
                     {/* Message */}
                     <h1 className="text-4xl font-bold text-gray-800 mb-4">No Blogs Found</h1>
                     <p className="text-xl text-gray-600 mb-8">
-                        We couldn't find any blogs in this category. Maybe try another category or check back later.
+                        We couldn&apos;t find any blogs in this category. Maybe try another category or check back later.
                     </p>
 
                     {/* Actions */}
@@ -120,16 +120,20 @@ export default function CategoryBlogsPage() {
 
     return (
         <div className="max-w-screen-lg mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-8 text-center">Blogs in "{category}"</h1>
+            <h1 className="text-3xl font-bold mb-8 text-center">
+                Blogs in &quot;{category}&quot;
+            </h1>
             <div className="grid md:grid-cols-1">
                 {blogs.map((blog) => (
                     <div
                         key={blog.id}
                         className="bg-white rounded-xl shadow-md hover:shadow-lg transition p-4 flex flex-col"
                     >
-                        <img
+                        <Image
                             src={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}`}
                             alt={blog.title}
+                            width={800}
+                            height={450}
                             className="w-full h-52 object-cover rounded-md"
                         />
                         <h2 className="mt-4 text-xl font-bold text-gray-800">{blog.title}</h2>

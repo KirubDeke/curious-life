@@ -34,11 +34,16 @@ export default function PopularPosts() {
           blogs: BlogFromApi[];
         }>(`${process.env.NEXT_PUBLIC_API_URL}/curious-life/blogs/popular`);
         setBlogs(data.blogs);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error(err);
-        setError(
-          err.response?.data?.message || 'Failed to load popular posts'
-        );
+
+        if (axios.isAxiosError(err)) {
+          setError(err.response?.data?.message || 'Failed to load popular posts');
+        } else if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('Failed to load popular posts');
+        }
       } finally {
         setLoading(false);
       }

@@ -23,7 +23,7 @@ export default function SignupForm() {
     message: "",
     color: "gray"
   });
-  const { setIsAuthenticated } = useAuth();
+  const { login } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -129,7 +129,7 @@ export default function SignupForm() {
       }
 
       toast.success("Signup successful!", { id: loadingToast });
-      setIsAuthenticated(true);
+      await login(formData.email, formData.password);
       router.push("/");
       
       // Clear form

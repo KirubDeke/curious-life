@@ -36,9 +36,6 @@ export default function LoginForm() {
     try {
       const response = await login(formData.email, formData.password);
       toast.success("Login successful!", { id: loadingToast });
-
-      // Handle redirect based on user role
-      // Check both possible response structures
       const role = response?.data?.role || response?.role;
       if (role === 0) {
         router.push('/dashboard');
@@ -46,14 +43,21 @@ export default function LoginForm() {
         router.push('/');
       }
       router.refresh();
-    } catch (err: any) {
-      const errorMessage = err.response?.data?.message || "Network error during login";
+    } catch (err) {
+      let errorMessage = "Network error during login";
+      if (err && typeof err === "object" && "response" in err) {
+        // @ts-expect-error: accessing dynamic property
+        errorMessage = err.response?.data?.message || errorMessage;
+      } else if (err instanceof Error) {
+        errorMessage = err.message;
+      }
       toast.error(`Login failed: ${errorMessage}`, { id: loadingToast });
       console.error("Login error:", err);
     } finally {
       setIsLoading(false);
     }
   };
+
 
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4">
@@ -227,7 +231,7 @@ export default function LoginForm() {
         {/* Sign Up Link */}
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link href="/signup" className="font-medium text-blue-600 hover:text-blue-500">
               Sign up
             </Link>

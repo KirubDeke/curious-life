@@ -146,9 +146,16 @@ export default function CreateBlogForm() {
       }
 
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       toast.error("Failed to publish blog");
-      console.error("Error:", error.response?.data || error.message);
+
+      if (axios.isAxiosError(error)) {
+        console.error("Error:", error.response?.data || error.message);
+      } else if (error instanceof Error) {
+        console.error("Error:", error.message);
+      } else {
+        console.error("Unknown error", error);
+      }
     } finally {
       setIsSubmitting(false);
     }

@@ -37,7 +37,7 @@ interface Blog {
 }
 
 interface BlogsResponse {
-    rows: any
+    rows: Blog[]
     count: number
     status: string
     message: string

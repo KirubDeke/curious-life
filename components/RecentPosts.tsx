@@ -34,11 +34,15 @@ export default function RecentPosts() {
           blogs: BlogFromApi[];
         }>(`${process.env.NEXT_PUBLIC_API_URL}/curious-life/blogs/recent`);
         setBlogs(data.blogs);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error(err);
-        setError(
-          err.response?.data?.message || 'Failed to load recent posts'
-        );
+        if (axios.isAxiosError(err)) {
+          setError(err.response?.data?.message || 'Failed to load recent posts');
+        } else if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('Failed to load recent posts');
+        }
       } finally {
         setLoading(false);
       }
@@ -109,7 +113,7 @@ export default function RecentPosts() {
           </div>
           <h3 className="mt-6 text-2xl font-medium text-gray-900">No Recent Posts Yet</h3>
           <p className="mt-3 text-gray-600">
-            It looks like there haven't been any posts recently. 
+            It looks like there haven&apos;t been any posts recently.&nbsp;
             Check back soon or be the first to create one!
           </p>
           <div className="mt-6">

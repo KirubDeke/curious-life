@@ -93,7 +93,7 @@ export default function SavedBlogsPage() {
             Your Reading List is Empty
           </h2>
           <p className="text-gray-500 mb-6">
-            You haven't saved any blogs yet. Start exploring and save interesting articles to read later.
+            You haven&apos;t saved any blogs yet. Start exploring and save interesting articles to read later.
           </p>
           <Link
             href="/"
