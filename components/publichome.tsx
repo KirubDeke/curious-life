@@ -1,7 +1,5 @@
 "use client";
 
-import CustomSearchBar from "./CustomSearchBar";
-
 export default function PublicHome() {
   const handleSearch = (query: string) => {
     console.log("Searching for:", query);
