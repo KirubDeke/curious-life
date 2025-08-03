@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { use } from 'react'; // For handling params Promise
+import { use } from 'react';
 
 interface Author {
   authorId: number;
@@ -31,7 +31,6 @@ export default function AuthorProfile({ params }: { params: Promise<{ id: string
         setLoading(true);
         setError(null);
 
-        // More flexible ID validation
         if (!id || typeof id !== 'string') {
           throw new Error('Author ID is required');
         }
@@ -53,12 +52,19 @@ export default function AuthorProfile({ params }: { params: Promise<{ id: string
         }
 
         setAuthor(res.data.data);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Error fetching author:", err);
-        setError(err.message || 'Failed to load author profile');
+        let errorMessage = 'Failed to load author profile';
         
-        // Redirect to 404 if author not found
-        if (err.message.includes('not found')) {
+        if (err instanceof Error) {
+          errorMessage = err.message;
+        } else if (err && typeof err === 'object' && 'message' in err && typeof err.message === 'string') {
+          errorMessage = err.message;
+        }
+
+        setError(errorMessage);
+        
+        if (errorMessage.includes('not found')) {
           router.push('/404');
         }
       } finally {

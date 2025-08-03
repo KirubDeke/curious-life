@@ -50,7 +50,7 @@ export default function SignupForm() {
       color = "red";
     } else {
       score += 1;
-      
+
       // Check for uppercase letters
       if (/[A-Z]/.test(password)) score += 1;
       // Check for numbers
@@ -131,7 +131,7 @@ export default function SignupForm() {
       toast.success("Signup successful!", { id: loadingToast });
       await login(formData.email, formData.password);
       router.push("/");
-      
+
       // Clear form
       setFormData({
         name: "",
@@ -140,9 +140,9 @@ export default function SignupForm() {
         confirmPassword: "",
       });
 
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast.error("Signup failed: Network error", { id: loadingToast });
-      console.error("Unexpected error:", err);
+      console.error("Unexpected error:", err instanceof Error ? err.message : err);
     }
   };
 
@@ -248,7 +248,7 @@ export default function SignupForm() {
               {formData.password && (
                 <div className="mt-1 flex items-center">
                   <span className="text-xs">Strength: </span>
-                  <span 
+                  <span
                     className={`ml-1 text-xs font-medium text-${passwordStrength.color}-500`}
                     style={{ color: passwordStrength.color }}
                   >
@@ -256,17 +256,16 @@ export default function SignupForm() {
                   </span>
                   <div className="ml-2 flex-1 flex space-x-1">
                     {[1, 2, 3, 4].map((i) => (
-                      <div 
+                      <div
                         key={i}
-                        className={`h-1 flex-1 rounded-full ${
-                          i <= passwordStrength.score 
-                            ? passwordStrength.color === "red" 
-                              ? "bg-red-500" 
-                              : passwordStrength.color === "orange" 
-                                ? "bg-orange-500" 
+                        className={`h-1 flex-1 rounded-full ${i <= passwordStrength.score
+                            ? passwordStrength.color === "red"
+                              ? "bg-red-500"
+                              : passwordStrength.color === "orange"
+                                ? "bg-orange-500"
                                 : "bg-green-500"
                             : "bg-gray-200"
-                        }`}
+                          }`}
                       />
                     ))}
                   </div>
