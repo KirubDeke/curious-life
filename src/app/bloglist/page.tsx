@@ -273,12 +273,10 @@ export default function BlogList() {
                     <div className="flex items-center">
                       {blog.author.photo ? (
                         <div className="relative w-8 h-8 rounded-full mr-2 overflow-hidden">
-                          <Image
+                          <img
                             src={blog.author.photo}
                             alt={blog.author.fullName}
-                            fill
                             className="object-cover"
-                            unoptimized
                           />
                         </div>
                       ) : (
