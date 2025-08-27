@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, FormEvent, ChangeEvent } from 'react';
-import axios, { AxiosError, AxiosResponse } from 'axios';
-import toast from 'react-hot-toast';
-import ClientLayout from '../../../components/ClientLayout';
+import { useState, FormEvent, ChangeEvent } from "react";
+import axios, { AxiosError, AxiosResponse } from "axios";
+import toast from "react-hot-toast";
+import ClientLayout from "../../../components/ClientLayout";
 
 type FormData = {
   name: string;
@@ -19,28 +19,30 @@ type ApiResponse = {
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitStatus, setSubmitStatus] = useState<{
     success: boolean;
     message: string;
-  }>({ success: false, message: '' });
+  }>({ success: false, message: "" });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus({ success: false, message: '' });
+    setSubmitStatus({ success: false, message: "" });
 
     try {
       const response: AxiosResponse<ApiResponse> = await axios.post(
@@ -48,17 +50,16 @@ export default function ContactForm() {
         formData,
         {
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           timeout: 10000,
         }
       );
 
-      toast.success("Message sent successfully")
-      setFormData({ name: '', email: '', message: '' });
-
+      toast.success("Message sent successfully");
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      toast.error("Failed to send message")
+      toast.error("Failed to send message");
     } finally {
       setIsSubmitting(false);
     }
@@ -70,9 +71,7 @@ export default function ContactForm() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl rounded-xl p-8 mt-12">
             <div className="mb-8 text-center">
-              <h2 className="text-3xl font-bold sm:text-4xl">
-                Contact Us
-              </h2>
+              <h2 className="text-3xl font-bold sm:text-4xl">Contact Us</h2>
               <p className="mt-4 text-lg">
                 Have questions or feedback? We would love to hear from you!
               </p>
@@ -156,14 +155,30 @@ export default function ContactForm() {
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center">
-                      <svg className="mr-2 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <svg
+                        className="mr-2 h-5 w-5 animate-spin text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
                       </svg>
                       Sending...
                     </span>
                   ) : (
-                    'Send Message'
+                    "Send Message"
                   )}
                 </button>
               </div>

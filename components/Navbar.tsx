@@ -5,6 +5,12 @@ import CustomButton from "./CustomButton";
 import CustomButtonTwo from "./CustomButtonTwo";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { Rock_Salt } from "next/font/google";
+
+const rockSalt = Rock_Salt({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -32,8 +38,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
           <Link href="/" className="flex items-center">
             <span
-              className="self-center text-lg sm:text-xl md:text-2xl font-semibold whitespace-nowrap"
-              style={{ fontFamily: "RockSalt" }}
+              className={` ${rockSalt.className} self-center text-lg sm:text-xl md:text-2xl font-semibold whitespace-nowrap`}
             >
               Curious <span className="text-blue-600">Life.</span>
             </span>

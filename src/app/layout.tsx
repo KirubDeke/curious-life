@@ -1,13 +1,13 @@
 import "./globals.css";
 import type { Metadata } from "next";
+
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "../../context/AuthContext";
-import { ThemeProvider } from "../../context/ThemeContext";
 import { SavedBlogsProvider } from "../../context/SavedBlogsContext"; 
 
 export const metadata: Metadata = {
-  title: "Blog App",
-  description: "Curious Life",
+  title: "Curious Life",
+  description: "Blog App",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -30,14 +30,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="antialiased">
-        <ThemeProvider>
           <AuthProvider>
             <SavedBlogsProvider> 
               <Toaster position="top-center" reverseOrder={false} />
               {children}
             </SavedBlogsProvider>
           </AuthProvider>
-        </ThemeProvider>
       </body>
     </html>
   );

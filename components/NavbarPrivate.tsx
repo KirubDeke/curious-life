@@ -2,13 +2,19 @@
 
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import { FaChevronDown, FaSignOutAlt, FaBars, FaTimes, FaSun, FaMoon, FaUserShield } from "react-icons/fa";
+import { FaChevronDown, FaSignOutAlt, FaBars, FaTimes, FaUserShield } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Swal from 'sweetalert2';
+import { Rock_Salt } from "next/font/google";
+
+const rockSalt = Rock_Salt({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 interface User {
   photo: string | null;
@@ -129,7 +135,7 @@ export default function NavbarPrivate() {
             >
               {isMobileMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
             </button>
-            <Link href="/" className="text-2xl md:text-3xl font-bold tracking-wide" style={{ fontFamily: "RockSalt" }}>
+            <Link href="/" className={` ${rockSalt.className} text-2xl md:text-3xl font-bold tracking-wide`}>
               Curious <span className="text-blue-500">Life.</span>
             </Link>
           </div>
@@ -152,26 +158,6 @@ export default function NavbarPrivate() {
                 </Link>
               )}
             </div>
-
-            {/* Dark Mode Toggle */}
-            <button
-              onClick={toggleDarkMode}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:scale-110 transform transition"
-              aria-label="Toggle dark mode"
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                {darkMode ? (
-                  <motion.div key="moon" initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.3 }}>
-                    <FaMoon className="text-indigo-300 w-5 h-5" />
-                  </motion.div>
-                ) : (
-                  <motion.div key="sun" initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }} transition={{ duration: 0.3 }}>
-                    <FaSun className="text-yellow-500 w-5 h-5" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </button>
-
             {/* User Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
