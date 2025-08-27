@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "../../context/AuthContext";
 import { SavedBlogsProvider } from "../../context/SavedBlogsContext"; 
+import { ThemeProvider } from "../../context/ThemeContext";
 
 export const metadata: Metadata = {
   title: "Curious Life",
@@ -31,10 +32,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="antialiased">
           <AuthProvider>
+            <ThemeProvider>
             <SavedBlogsProvider> 
               <Toaster position="top-center" reverseOrder={false} />
               {children}
             </SavedBlogsProvider>
+            </ThemeProvider>
           </AuthProvider>
       </body>
     </html>
