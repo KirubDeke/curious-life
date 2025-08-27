@@ -278,6 +278,7 @@ export default function BlogList() {
                             alt={blog.author.fullName}
                             fill
                             className="object-cover"
+                            unoptimized
                           />
                         </div>
                       ) : (
