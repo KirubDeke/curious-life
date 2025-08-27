@@ -156,14 +156,12 @@ export default function PopularPosts() {
             <CustomCard
               key={b.id}
               blogId={b.id}
-              image={`${process.env.NEXT_PUBLIC_API_URL}${b.image}`}
+              image={b.image}
               category={b.category}
               title={b.title}
               description={description}
               authorImage={
-                b.author.photo
-                  ? `${process.env.NEXT_PUBLIC_API_URL}${b.author.photo}`
-                  : null
+                b.author.photo || null
               }
               authorName={b.author.fullName}
               authorId={b.author.id}

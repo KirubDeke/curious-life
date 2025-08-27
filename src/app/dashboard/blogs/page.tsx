@@ -180,7 +180,7 @@ export default function AdminBlogsPage() {
                 {blogsData.rows.map((blog: Blog) => (
                     <div key={blog.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
                         <img
-                            src={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}` || '/placeholder-blog.jpg'}
+                            src={blog.image || '/placeholder-blog.jpg'}
                             alt={blog.title}
                             className="w-full h-48 object-cover"
                         />
@@ -200,7 +200,7 @@ export default function AdminBlogsPage() {
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center">
                                     <img
-                                        src={`${process.env.NEXT_PUBLIC_API_URL}${blog.author.photo}` || '/placeholder-user.jpg'}
+                                        src={blog.author.photo || '/placeholder-user.jpg'}
                                         alt={blog.author.fullName}
                                         className="w-8 h-8 rounded-full mr-2"
                                     />
@@ -237,7 +237,7 @@ export default function AdminBlogsPage() {
 
                             <div className="mb-6">
                                 <img
-                                    src={`${process.env.NEXT_PUBLIC_API_URL}${selectedBlog.image}` || '/placeholder-blog.jpg'}
+                                    src={selectedBlog.image || '/placeholder-blog.jpg'}
                                     alt={selectedBlog.title}
                                     className="w-full h-64 object-cover rounded-lg"
                                 />
@@ -260,7 +260,7 @@ export default function AdminBlogsPage() {
                                 <h3 className="text-lg font-semibold text-gray-800 mb-3">About the Author</h3>
                                 <div className="flex items-center">
                                     <img
-                                        src={`${process.env.NEXT_PUBLIC_API_URL}${selectedBlog.author.photo}` || '/placeholder-user.jpg'}
+                                        src={selectedBlog.author.photo || '/placeholder-user.jpg'}
                                         alt={selectedBlog.author.fullName}
                                         className="w-12 h-12 rounded-full mr-4"
                                     />

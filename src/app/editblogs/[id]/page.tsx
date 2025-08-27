@@ -325,10 +325,7 @@ export default function EditBlog() {
                 <p className="text-sm text-gray-500 mb-2">Preview:</p>
                 <div className="relative w-full h-64 rounded-lg overflow-hidden border border-gray-200">
                   <img
-                    src={
-                      previewImage ||
-                      `${process.env.NEXT_PUBLIC_API_URL}${blog?.image}`
-                    }
+                    src={previewImage || blog?.image}
                     alt="Blog cover preview"
                     className="absolute inset-0 w-full h-full object-cover"
                   />

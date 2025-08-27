@@ -139,7 +139,7 @@ export default function CategoryBlogsPage() {
               className="bg-white rounded-xl shadow-md hover:shadow-lg transition p-4 flex flex-col"
             >
               <Image
-                src={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}`}
+                src={blog.image}
                 alt={blog.title}
                 width={800}
                 height={450}
@@ -151,7 +151,7 @@ export default function CategoryBlogsPage() {
 
               <div className="flex items-center gap-2 mt-3">
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_API_URL}${blog.author.photo}`}
+                  src={blog.author.photo}
                   alt={blog.author.fullName}
                   width={32}
                   height={32}

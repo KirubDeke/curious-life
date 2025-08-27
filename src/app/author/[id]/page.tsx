@@ -164,7 +164,7 @@ export default function AuthorProfile({
                 <div className="relative">
                   {author.photo ? (
                     <img
-                      src={`${process.env.NEXT_PUBLIC_API_URL}${author.photo}`}
+                      src={author.photo}
                       alt={author.fullName}
                       className="h-32 w-32 rounded-full object-cover border-4 border-white shadow-lg"
                       width={128}

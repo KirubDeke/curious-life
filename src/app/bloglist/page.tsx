@@ -246,7 +246,7 @@ export default function BlogList() {
                 {blog.image && (
                   <div className="relative w-full h-48">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}`}
+                      src={blog.image}
                       alt={blog.title}
                       fill
                       className="object-cover"
@@ -274,7 +274,7 @@ export default function BlogList() {
                       {blog.author.photo ? (
                         <div className="relative w-8 h-8 rounded-full mr-2 overflow-hidden">
                           <Image
-                            src={`${process.env.NEXT_PUBLIC_API_URL}${blog.author.photo}`}
+                            src={blog.author.photo}
                             alt={blog.author.fullName}
                             fill
                             className="object-cover"

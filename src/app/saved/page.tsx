@@ -171,11 +171,11 @@ export default function SavedBlogsPage() {
           {savedBlogs.map(blog => (
             <CustomCard
               key={blog.id}
-              image={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}`}
+              image={blog.image}
               category={blog.category}
               title={blog.title}
               description={blog.body.slice(0, 100) + '...'}
-              authorImage={`${process.env.NEXT_PUBLIC_API_URL}${blog.author.photo}`}
+              authorImage={blog.author.photo}
               authorName={blog.author.fullName}
               authorId={blog.author.id}
               date={new Date(blog.createdAt).toLocaleDateString()}

@@ -27,12 +27,16 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <nav className={`fixed w-full z-20 ${isScrolled ? 'bg-background shadow-md' : 'bg-background'} text-foreground transition-all duration-300`}>
+    <nav
+      className={`fixed w-full z-20 ${
+        isScrolled ? "bg-background shadow-md" : "bg-background"
+      } text-foreground transition-all duration-300`}
+    >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-3">
         {/* Logo */}
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -48,8 +52,14 @@ export default function Navbar() {
         {/* Mobile menu button */}
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <div className="hidden md:flex items-center space-x-4">
-            <CustomButton text={"Log In"} onClick={() => window.location.href = "/signin"} />
-            <CustomButtonTwo text={"Sign Up"} onClick={() => window.location.href = "/signup"} />
+            <CustomButton
+              text={"Log In"}
+              onClick={() => (window.location.href = "/signin")}
+            />
+            <CustomButtonTwo
+              text={"Sign Up"}
+              onClick={() => (window.location.href = "/signup")}
+            />
           </div>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -59,29 +69,95 @@ export default function Navbar() {
           >
             <span className="sr-only">Open main menu</span>
             {isMenuOpen ? (
-              <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             ) : (
-              <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
+              <svg
+                className="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 17 14"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M1 1h15M1 7h15M1 13h15"
+                />
               </svg>
             )}
           </button>
         </div>
 
-        {/* Navigation links */}
+        {/* Desktop navigation links */}
         <div className="hidden md:flex items-center space-x-8">
-          <Link href="/" className="text-lg hover:text-blue-500 transition-colors duration-200">Home</Link>
-          <Link href="/" className="text-lg hover:text-blue-500 transition-colors duration-200">Blogs</Link>
-          <Link href="/contact" className="text-lg hover:text-blue-500 transition-colors duration-200">Contact</Link>
+          <Link
+            href="/"
+            className="text-lg hover:text-blue-500 transition-colors duration-200"
+          >
+            Home
+          </Link>
+          <Link
+            href="/"
+            className="text-lg hover:text-blue-500 transition-colors duration-200"
+          >
+            Blogs
+          </Link>
+          <Link
+            href="/contact"
+            className="text-lg hover:text-blue-500 transition-colors duration-200"
+          >
+            Contact
+          </Link>
         </div>
 
-        {/* Mobile auth buttons (shown only on mobile) */}
+        {/* Mobile menu: links + auth buttons */}
         {isMenuOpen && (
-          <div className="w-full md:hidden flex justify-center space-x-4 mt-4 pb-4">
-            <CustomButton text={"Log In"} onClick={() => window.location.href = "/signin"} />
-            <CustomButtonTwo text={"Sign Up"} onClick={() => window.location.href = "/signup"} />
+          <div className="w-full md:hidden flex flex-col items-center space-y-2 mt-4 pb-4">
+            <Link
+              href="/"
+              className="text-lg hover:text-blue-500 transition-colors duration-200"
+            >
+              Home
+            </Link>
+            <Link
+              href="/"
+              className="text-lg hover:text-blue-500 transition-colors duration-200"
+            >
+              Blogs
+            </Link>
+            <Link
+              href="/contact"
+              className="text-lg hover:text-blue-500 transition-colors duration-200"
+            >
+              Contact
+            </Link>
+
+            <div className="flex justify-center space-x-4 mt-4">
+              <CustomButton
+                text={"Log In"}
+                onClick={() => (window.location.href = "/signin")}
+              />
+              <CustomButtonTwo
+                text={"Sign Up"}
+                onClick={() => (window.location.href = "/signup")}
+              />
+            </div>
           </div>
         )}
       </div>

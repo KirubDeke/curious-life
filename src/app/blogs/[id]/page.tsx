@@ -316,7 +316,7 @@ export default function BlogDetailPage() {
                   day: "numeric",
                 }
               )}
-              imageUrl={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}`}
+              imageUrl={blog.image}
               content={blog.body.split(/\r?\n\r?\n/)}
             />
             <button
@@ -622,10 +622,11 @@ export default function BlogDetailPage() {
 
                   <div className="flex items-center space-x-4 mb-2">
                     <img
-                      src={`${process.env.NEXT_PUBLIC_API_URL}${comment.user.photo}`}
+                      src={comment.user.photo || "/default-avatar.png"}
                       alt={comment.user.fullName}
                       className="w-10 h-10 rounded-full object-cover"
                     />
+
                     <div>
                       <p className="font-semibold">{comment.user.fullName}</p>
                       <p className="text-sm text-gray-500">

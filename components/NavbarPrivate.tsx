@@ -1,14 +1,20 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import { FaChevronDown, FaSignOutAlt, FaBars, FaTimes, FaUserShield } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  FaChevronDown,
+  FaSignOutAlt,
+  FaBars,
+  FaTimes,
+  FaUserShield,
+} from "react-icons/fa";
+import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import { Rock_Salt } from "next/font/google";
 
 const rockSalt = Rock_Salt({
@@ -34,9 +40,12 @@ export default function NavbarPrivate() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/curious-life/profile`, { 
-          withCredentials: true 
-        });
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/curious-life/profile`,
+          {
+            withCredentials: true,
+          }
+        );
         setUser(res.data.user);
       } catch (error) {
         console.error("Failed to load user info", error);
@@ -47,7 +56,10 @@ export default function NavbarPrivate() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsDropdownOpen(false);
       }
     };
@@ -59,20 +71,20 @@ export default function NavbarPrivate() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleSignout = async () => {
     const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will be signed out from your account.',
-      icon: 'warning',
+      title: "Are you sure?",
+      text: "You will be signed out from your account.",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, sign me out',
-      cancelButtonText: 'Cancel'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, sign me out",
+      cancelButtonText: "Cancel",
     });
 
     if (result.isConfirmed) {
@@ -93,7 +105,7 @@ export default function NavbarPrivate() {
         console.error(error);
       }
     } else {
-      toast('Sign out cancelled', { icon: '❌' });
+      toast("Sign out cancelled", { icon: "❌" });
     }
   };
 
@@ -101,16 +113,20 @@ export default function NavbarPrivate() {
     if (user?.photo) {
       return (
         <img
-          src={`${process.env.NEXT_PUBLIC_API_URL}${user.photo}`}
+          src={user.photo}
           alt="Profile"
           className="w-10 h-10 rounded-full object-cover border-2 border-blue-500"
         />
       );
     } else if (user?.fullName) {
-      const firstName = user.fullName.split(' ')[0];
+      const initials = user.fullName
+        .split(" ")
+        .map((name) => name[0])
+        .slice(0, 2)
+        .join("");
       return (
-        <span className="text-sm font-semibold bg-blue-600 text-white px-4 py-2 rounded-full">
-          {firstName}
+        <span className="w-10 h-10 flex items-center justify-center text-sm font-semibold bg-blue-600 text-white rounded-full">
+          {initials}
         </span>
       );
     } else {
@@ -124,7 +140,11 @@ export default function NavbarPrivate() {
 
   return (
     <>
-      <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "shadow-lg bg-opacity-80 backdrop-blur-md" : ""} bg-background text-foreground rounded-b-lg`}>
+      <div
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled ? "shadow-lg bg-opacity-80 backdrop-blur-md" : ""
+        } bg-background text-foreground rounded-b-lg`}
+      >
         <nav className="py-4 px-6 md:px-12 max-w-screen-xl mx-auto flex items-center justify-between">
           {/* Left */}
           <div className="flex items-center space-x-4">
@@ -133,9 +153,16 @@ export default function NavbarPrivate() {
               className="md:hidden p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
               aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
+              {isMobileMenuOpen ? (
+                <FaTimes className="w-6 h-6" />
+              ) : (
+                <FaBars className="w-6 h-6" />
+              )}
             </button>
-            <Link href="/" className={` ${rockSalt.className} text-2xl md:text-3xl font-bold tracking-wide`}>
+            <Link
+              href="/"
+              className={` ${rockSalt.className} text-2xl md:text-3xl font-bold tracking-wide`}
+            >
               Curious <span className="text-blue-500">Life.</span>
             </Link>
           </div>
@@ -143,21 +170,40 @@ export default function NavbarPrivate() {
           {/* Right */}
           <div className="flex items-center space-x-6">
             <div className="hidden md:flex items-center space-x-8 text-lg font-medium">
-              <Link href="/" className="hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition duration-150">Home</Link>
-              <Link href="/bloglist" className="hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition duration-150">Blogs</Link>
-              <Link href="/saved" className="hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition duration-150">Saved</Link>
-              <Link href="/contact" className="hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition duration-150">Contact</Link>
-              
-              {/* Admin Dashboard Link - Only shown for admins (role === 0) */}
+              <Link
+                href="/"
+                className="hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition duration-150"
+              >
+                Home
+              </Link>
+              <Link
+                href="/bloglist"
+                className="hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition duration-150"
+              >
+                Blogs
+              </Link>
+              <Link
+                href="/saved"
+                className="hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition duration-150"
+              >
+                Saved
+              </Link>
+              <Link
+                href="/contact"
+                className="hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition duration-150"
+              >
+                Contact
+              </Link>
               {user?.role === 0 && (
-                <Link 
-                  href="/dashboard" 
+                <Link
+                  href="/dashboard"
                   className="hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition duration-150 flex items-center"
                 >
                   <FaUserShield className="mr-1" /> Admin
                 </Link>
               )}
             </div>
+
             {/* User Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
@@ -165,7 +211,11 @@ export default function NavbarPrivate() {
                 className="flex items-center space-x-2 focus:outline-none"
               >
                 {renderUserAvatar()}
-                <FaChevronDown className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`} />
+                <FaChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    isDropdownOpen ? "rotate-180" : ""
+                  }`}
+                />
               </button>
 
               {isDropdownOpen && (
@@ -176,23 +226,20 @@ export default function NavbarPrivate() {
                   className="absolute right-0 mt-2 w-52 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl z-50"
                 >
                   <div className="py-2">
-                    <Link 
-                      href="/profile" 
+                    <Link
+                      href="/profile"
                       className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
                       Profile
                     </Link>
-
-                    {/* Admin Dashboard Link in Dropdown */}
                     {user?.role === 0 && (
-                      <Link 
-                        href="/dashboard" 
+                      <Link
+                        href="/dashboard"
                         className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center"
                       >
                         <FaUserShield className="mr-2" /> Admin Dashboard
                       </Link>
                     )}
-
                     <button
                       onClick={handleSignout}
                       className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center"
@@ -206,19 +253,49 @@ export default function NavbarPrivate() {
           </div>
         </nav>
 
-        {/* Mobile Nav */}
-        <div className={`md:hidden transition-all duration-300 ${isMobileMenuOpen ? 'block' : 'hidden'} px-6 pb-4`}>
+        {/* Mobile Menu */}
+        <div
+          className={`md:hidden transition-all duration-300 ${
+            isMobileMenuOpen ? "block" : "hidden"
+          } px-6 pb-4`}
+        >
           <ul className="flex flex-col space-y-3 text-lg font-medium">
-            <li><Link href="/" className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">Home</Link></li>
-            <li><Link href="/bloglist" className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">Blogs</Link></li>
-            <li><Link href="/saved" className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">Saved</Link></li>
-            <li><Link href="/contact" className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">Contact</Link></li>
-            
-            {/* Admin Dashboard Link in Mobile Menu */}
+            <li>
+              <Link
+                href="/"
+                className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/bloglist"
+                className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                Blogs
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/saved"
+                className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                Saved
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/contact"
+                className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                Contact
+              </Link>
+            </li>
             {user?.role === 0 && (
               <li>
-                <Link 
-                  href="/dashboard" 
+                <Link
+                  href="/dashboard"
                   className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center"
                 >
                   <FaUserShield className="mr-2" /> Admin Dashboard

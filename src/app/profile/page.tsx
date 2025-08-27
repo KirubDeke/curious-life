@@ -294,7 +294,7 @@ export default function ProfilePage() {
               <div className="h-40 w-40 rounded-full overflow-hidden border-4 border-white mx-auto shadow-lg">
                 {user.photo ? (
                   <img
-                    src={`${process.env.NEXT_PUBLIC_API_URL}${user.photo}`}
+                    src={user.photo}
                     alt="Profile"
                     className="h-full w-full object-cover"
                     onError={() => setUser({ ...user, photo: null })}
