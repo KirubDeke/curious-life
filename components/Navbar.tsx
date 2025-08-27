@@ -42,7 +42,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
           <Link href="/" className="flex items-center">
             <span
-              className={` ${rockSalt.className} self-center text-lg sm:text-xl md:text-2xl font-semibold whitespace-nowrap`}
+              className={` ${rockSalt.className} self-center text-base sm:text-lg md:text-xl font-semibold whitespace-nowrap`}
             >
               Curious <span className="text-blue-600">Life.</span>
             </span>

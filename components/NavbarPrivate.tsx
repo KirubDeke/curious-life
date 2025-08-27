@@ -161,7 +161,7 @@ export default function NavbarPrivate() {
             </button>
             <Link
               href="/"
-              className={` ${rockSalt.className} text-2xl md:text-3xl font-bold tracking-wide`}
+              className={` ${rockSalt.className} text-xl md:text-2xl font-bold tracking-wide`}
             >
               Curious <span className="text-blue-500">Life.</span>
             </Link>
